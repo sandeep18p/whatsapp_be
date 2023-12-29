@@ -33,7 +33,7 @@ app.use(compression());
 
 //file upload
 app.use(
-    fileUpload({
+    fileUpload ({
     useTempFiles: true,
 }));
 
