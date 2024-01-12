@@ -3,6 +3,7 @@ import app from "./app.js";
 import logger from './configs/logger.config.js'
 
 
+
 const {DATABASE_URL}=process.env;
 const PORT = process.env.PORT || 8000;
 let server;
