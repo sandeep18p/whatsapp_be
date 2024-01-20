@@ -40,8 +40,8 @@ export const register =async (req,res,next)=>{
           email: newUser.email,
           picture: newUser.picture,
           status: newUser.status,
-          // token: access_token,
-          access_token,
+          token: access_token,
+          // access_token,
         },
       });
     
@@ -84,8 +84,8 @@ export const login =async (req,res,next)=>{
           email: user.email,
           picture: user.picture,
           status: user.status,
-          // token: access_token,
-          access_token,
+          token: access_token,
+          // access_token,
         } })
     }catch (error){
      next(error);
@@ -127,8 +127,8 @@ export const refreshToken = async (req,res, next)=>{ // TO VERIFY VIDEO 23
         email: user.email,
         picture: user.picture,
         status: user.status,
-        // token: access_token,
-        access_token,
+        token: access_token,
+        // access_token,
       } });
      }catch(error){
    next(error);
