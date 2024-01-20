@@ -8,7 +8,6 @@ export const create_open_conversation=async(req,res,next)=>{
     //making conversation
     const sender_id = req.user.userId;
     const { receiver_id } =  req.body;
-    console.log("here 1");
    //chech if receiver_id is provided
    if(!receiver_id){
     logger.error(
@@ -30,6 +29,7 @@ export const create_open_conversation=async(req,res,next)=>{
     let receiver_user= await findUser(receiver_id);
     let convoData={
         name: receiver_user.name,
+        picture: receiver_user.picture,
         isGroup: false,
         users: [sender_id, receiver_id],
     };
