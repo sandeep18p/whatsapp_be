@@ -6,3 +6,16 @@ export const findUser = async (userId)=>{
     if(!user)throw createHttpError.BadRequest("please fill all the fields");
     return user;
 }
+
+export const searchUsers = async (keyword, userId) => {
+    const users = await UserModel.find({
+      $or: [
+        { name: { $regex: keyword, $options: "i" } }, //by name search
+        { email: { $regex: keyword, $options: "i" } }, // oy by email search
+      ],
+    }).find({
+      _id: { $ne: userId },
+    });
+    return users;
+  };
+  
