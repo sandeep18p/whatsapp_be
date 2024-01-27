@@ -14,7 +14,7 @@ export const searchUsers = async (keyword, userId) => {
         { email: { $regex: keyword, $options: "i" } }, // oy by email
       ],
     }).find({
-      _id: { $ne: userId },
+      _id: { $ne: userId }, //it will not user it self in contact list when search happen
     });
     return users;
   };
