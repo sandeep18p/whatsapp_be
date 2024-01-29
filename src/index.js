@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import app from "./app.js";
 import logger from './configs/logger.config.js'
-
+import { Server } from "socket.io";
+import SocketServer from "./SocketServer.js";
 
 
 const {DATABASE_URL}=process.env;
@@ -35,6 +36,20 @@ mongoose.connect(DATABASE_URL,{
 server=app.listen(PORT, () => {
     logger.info(`Server is running at ${PORT}`);
 });
+
+
+//socket io
+const io = new Server(server, {
+    pingTimeout: 60000,
+    cors: {
+      origin: process.env.CLIENT_ENDPOINT,
+    },
+  });
+  io.on("connection", (socket) => {
+ console.log("hello from server 0")
+    logger.info("socket io connected successfully.");
+    SocketServer(socket, io);
+  });
 
 //handle server errors
 const exitHandler =()=>{

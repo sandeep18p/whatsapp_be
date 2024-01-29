@@ -41,8 +41,6 @@ export const getMessages = async (req, res, next) => {
       res.sendStatus(400);
     }
     const messages = await getConvoMessages(convo_id);
-    console.log(" one one one ")
-    console.log(messages)
     res.json(messages);
    } catch (error) {
     next(error);

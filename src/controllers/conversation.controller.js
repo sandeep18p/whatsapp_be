@@ -26,10 +26,13 @@ export const create_open_conversation=async(req,res,next)=>{
   }else{
     // res.send('We need to create a new conversation');
     //creating conversation
-    let receiver_user= await findUser(receiver_id);
+    // let receiver_user= await findUser(receiver_id);
     let convoData={
-        name: receiver_user.name,
-        picture: receiver_user.picture,
+        // name: receiver_user.name,
+        // picture: receiver_user.
+        // picture,
+        name: "conversation.name",
+        picture: "conversation.picture",
         isGroup: false,
         users: [sender_id, receiver_id],
     };
@@ -44,7 +47,6 @@ export const create_open_conversation=async(req,res,next)=>{
   }
 
  }catch(error){
-  console.log("here");
    next(error);
  }
 }
