@@ -25,7 +25,7 @@ let server;
 //connect to db
 mongoose.connect(DATABASE_URL,{
     useNewUrlParser: true,
-    useUnifiedTopology: true}).then(()=>{
+     useUnifiedTopology: true}).then(()=>{
         logger.info('Connected to Mongodb')
     })
 
@@ -49,6 +49,7 @@ const io = new Server(server, {
  console.log("hello from server 0")
     logger.info("socket io connected successfully.");
     SocketServer(socket, io);
+    //yahah io vvideo 71 7:30
   });
 
 //handle server errors
