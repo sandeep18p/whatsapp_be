@@ -5,11 +5,13 @@ export default function (socket, io) {
     socket.join(user);
     //add joined user to online users
     if (!onlineUsers.some((u) => u.userId === user)) {
-      onlineUsers.push({ userId: user, socketId: socket.id });
-    }
+      // console.log("100000",socketId)
+    onlineUsers.push({ userId: user, socketId: socket.id });
+    // console.log("100001",socketId)
+      }
     //send online users to frontend
     io.emit("get-online-users", onlineUsers);
-    //send socket id
+    //send socket id to make calls video video 91 5:00
     io.emit("setup socket", socket.id);
   });
 
@@ -44,19 +46,23 @@ export default function (socket, io) {
     socket.in(conversation).emit("stop typing");
   });
 
-  //call
-  //---call user
+  // call
+  // ---call user
   socket.on("call user", (data) => {
+    console.log("golo data socket",data
+    )
     let userId = data.userToCall;
-    let userSocketId = onlineUsers.find((user) => user.userId == userId);
+    let userSocketId =  onlineUsers.find((user) => user.userId == userId);
+    //userSocketId.socketId this cintains true false value
+    // console.log(10000000000)
     io.to(userSocketId.socketId).emit("call user", {
       signal: data.signal,
-      from: data.from,
+      from: data.from, 
       name: data.name,
       picture: data.picture,
     });
   });
-  //---answer call
+  //---answer call 
   socket.on("answer call", (data) => {
     io.to(data.to).emit("call accepted", data.signal);
   });
